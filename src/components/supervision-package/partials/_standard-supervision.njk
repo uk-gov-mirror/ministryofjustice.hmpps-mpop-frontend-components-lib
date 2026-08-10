@@ -12,7 +12,7 @@
 
 {% if params.context.finalThirdEligibility.eligible == true %}
     <p class='govuk-body'>{{ params.context.name.forename }} is eligible to start the final third stage on {{ params.context.sentences[0].custody.finalThirdDate | dateWithYear }}.</p>
-{% elseif params.context.finalThirdEligibility.eligible == false %}
+{% elseif params.context.finalThirdEligibility.eligible == false and params.context | sentenceType == 'custodial sentence' %}
     <p class='govuk-body'>{{ params.context.name.forename }} is not eligible for the final third stage.</p>
 {% endif %}
 

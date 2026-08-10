@@ -1,0 +1,11 @@
+{% if params.allAppointmentsHref %}
+    {% if params.currentPhase.phase.code  == 'FTHRD' %}
+        <p class='govuk-body'>
+            <a class='govuk-link govuk-link--no-visited-state' href='{{ params.allAppointmentsHref }}' >View last appointment</a>
+        </p>
+    {% else %}
+        <p class='govuk-body'>
+            <a class='govuk-link govuk-link--no-visited-state' href='{{ params.allAppointmentsHref }}' >View all appointments</a>
+        </p>
+    {% endif %}
+{% endif %}

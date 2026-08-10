@@ -62,7 +62,11 @@ describe('_standard-supervision partial', () => {
 
     it('shows the not eligible text when eligible is false', () => {
       const document = renderPartial({
-        context: { name: { forename: 'Alex' }, finalThirdEligibility: { eligible: false } },
+        context: {
+          name: { forename: 'Alex' },
+          finalThirdEligibility: { eligible: false },
+          sentences: [{ type: { isCustodial: true } }],
+        },
         currentYear: { isFirstYear: true, endDate: '2026-08-15', appointments: { allowance: 20, completed: 5 } },
       })
 

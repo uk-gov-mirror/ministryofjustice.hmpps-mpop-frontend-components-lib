@@ -116,31 +116,16 @@
                 {% elseif params.currentPhase.phase.code  == 'STD' %}
                     <h3 class='govuk-heading-s'>{{ params.currentPhase.phase.description | toTitleCase }} stage</h3>
                     {% include './partials/_standard-supervision.njk' %}
+                {% elseif params.currentPhase.phase.code  == 'FTHRD' %}
+                    <h3 class='govuk-heading-s'>{{ params.currentPhase.phase.description | toTitleCase }} stage</h3>
+                    {% include './partials/_final-third.njk' %}
                 {% endif %}
 
-                {% if params.allAppointmentsHref %}
-                    <p class='govuk-body'>
-                        <a class='govuk-link govuk-link--no-visited-state' href='{{ params.allAppointmentsHref }}' >View all appointments</a>
-                    </p>
-                {% endif %}
+                {% include './partials/_view-appointments.njk' %}
             </div>
         {% endif %}
     </div>
 
-    {% if not (params.context.sentences | isInCustody or params.context.sentences | isAtLarge ) and (params.arrangeAppointmentHref or (params.crn and params.deliusBaseURL)) %}
-        <div class='govuk-button-group'>
-            {% if params.arrangeAppointmentHref %}
-                <a href='{{ params.arrangeAppointmentHref }}' role='button' draggable='false' class='govuk-button' data-module='govuk-button'>
-                    Arrange an appointment
-                </a>
-            {% endif %}
-
-            {% if params.crn and params.deliusBaseURL %}
-                <a href='{{ params.deliusBaseURL }}/NDelius-war/delius/JSP/deeplink.xhtml?component=RegisterSummary&CRN={{params.crn}}' role='button' draggable='false' class='govuk-button govuk-button--secondary' data-module='govuk-button'>
-                    Update NDelius risk flag
-                </a>
-            {% endif %}
-        </div>
-    {% endif %}
+    {% include './partials/_action-buttons.njk' %}
 </div>
 {% endif %}

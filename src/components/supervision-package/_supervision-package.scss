@@ -44,9 +44,11 @@ $supervision-package-accent-colour: govuk-colour("blue");
 .appointment-progress__bar {
   background-color: govuk-colour("teal", $variant: "tint-25");
   height: 100%;
+  width: var(--appointment-progress-width, 0);
 }
 
 .appointment-progress__bar-maximum {
   background-color: govuk-colour("red");
   height: 100%;
+  width: var(--appointment-progress-width, 0);
 }

@@ -113,11 +113,9 @@ async function main() {
     authToken,
     crn,
   )
-  const getPersonScheduleResponse = await mpopComponents.getPersonSchedule(authToken, crn)
 
   console.info(result)
   console.info(personalDetailsResponse)
-  console.info(getPersonScheduleResponse)
   console.dir(supervisionPackageFrontendContextResponse, { depth: null })
 
   const { personalDetails } = personalDetailsResponse
