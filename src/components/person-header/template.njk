@@ -1,3 +1,55 @@
+
+
+{% set personRiskFlags %}
+{% for group in params.riskBadgeData.groups %}
+{% for risk in group.badges %}
+<a
+        href="/case/{{ headerCRN }}/risk/flag/{{ risk.id }}"
+        class="risk-badge-link"
+        data-qa="risk-badge-{{ risk.id }}"
+>
+    {{ mojBadge({
+                    text: risk.text,
+                    classes: risk.badgeClass
+                }) }}
+</a>
+{% endfor %}
+{% endfor %}
+{% endset%}
+
+{% if params.riskBadgeData %}
+<div class="person-header__risk-panel">
+    <div
+            class="person-header__risk-tags"
+            data-qa="riskBadges"
+    >
+        {% for group in params.riskBadgeData.groups %}
+        {% for risk in group.badges %}
+        <a
+                href="/case/{{ params.crn }}/risk/flag/{{ risk.id }}"
+                class="risk-badge-link"
+                data-qa="risk-badge-{{ risk.id }}"
+        >
+                        <span class="moj-badge {{ risk.badgeClass }}">
+                            {{ risk.text }}
+                        </span>
+        </a>
+        {% endfor %}
+        {% endfor %}
+
+        {% if params.riskBadgeData.remainingCount > 0 %}
+        <a
+                href="/case/{{ params.crn }}/risk"
+                class="govuk-link risk-badge-more"
+                data-qa="risk-badge-more"
+        >
+            +{{ params.riskBadgeData.remainingCount }} active risk flags
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
 <div class='person-header'>
     <div class='person-header__band'>
         {% if params.photo %}
@@ -32,7 +84,9 @@
 
     {% if params.riskBadges and (params.riskBadges | trim) %}
         <div class='person-header__risk-panel'>
-            <div class='person-header__risk-tags' data-qa='riskBadges'>{{ params.riskBadges | safe }}</div>
+            <div class="pop-header-risk-flags">
+                {{ params.personRiskFlags | safe }}
+            </div>
         </div>
     {% endif %}
-</div>
+</div>`
